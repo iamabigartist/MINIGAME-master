@@ -86,7 +86,7 @@ public class MovingSphere : MonoBehaviour {
 
 	int groundContactCount, steepContactCount, climbContactCount;
 
-	bool OnGround => groundContactCount > 0;
+	public bool OnGround => groundContactCount > 0;
 
 	bool OnSteep => steepContactCount > 0;
 
