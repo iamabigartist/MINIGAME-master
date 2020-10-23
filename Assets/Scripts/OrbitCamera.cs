@@ -44,7 +44,8 @@ public class OrbitCamera : MonoBehaviour {
 	Quaternion gravityAlignment = Quaternion.identity;
 
 	Quaternion orbitRotation;
-
+	public bool timeToggle = false;
+	public float targetdistance;
 	Vector3 CameraHalfExtends {
 		get {
 			Vector3 halfExtends;
@@ -63,6 +64,44 @@ public class OrbitCamera : MonoBehaviour {
 		}
 	}
 
+	private void Update()
+	{
+
+		timeToggle = GameObject.Find("Sphere").GetComponent<playercontroller>().timeToggle;
+		if (timeToggle == true)
+		{
+			distance = Mathf.SmoothStep(distance, targetdistance, 0.15f);
+		}
+		if (timeToggle == false)
+		{
+			distance = Mathf.SmoothStep(distance, 13, 0.15f);
+		}
+		/*if (Input.GetKeyDown(KeyCode.LeftShift))
+		{
+			timeToggle = !timeToggle;
+		}*/
+		if (timeToggle && Input.GetKeyDown(KeyCode.A))
+		{
+			Invoke("timescale", 0.02f);
+		}
+		if (timeToggle && Input.GetKeyDown(KeyCode.W))
+		{
+			Invoke("timescale", 0.02f);
+		}
+		if (timeToggle && Input.GetKeyDown(KeyCode.D))
+		{
+			Invoke("timescale", 0.02f);
+		}
+		if (timeToggle && Input.GetKeyDown(KeyCode.S))
+		{
+			Invoke("timescale", 0.02f);
+		}
+
+	}
+	void timescale ()
+	{
+		timeToggle = !timeToggle;
+	}
 	void Awake () {
 		regularCamera = GetComponent<Camera>();
 		focusPoint = focus.position;
