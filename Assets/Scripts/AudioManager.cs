@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
+    public float blend = 0.01f;
+
     public AudioClip[] bgm;
     private int i=0;
     public AudioClip endGame;
@@ -13,47 +17,65 @@ public class AudioManager : MonoBehaviour
     public AudioClip run;
 
     public MovingSphere player;
-    
-    AudioSource audioSource;
+
+    private AudioSource audioSource;
+    private AudioSource audioSource2;
 
     private bool play = true;
     private bool lastGround;
     private void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource2 = gameObject.AddComponent<AudioSource>();
+        
         player = GetComponentInParent<MovingSphere>();
         play = (bgm.Length>0 && endGame && inAir);
         
         audioSource.clip = bgm[0];
         audioSource.loop = true;
         audioSource.playOnAwake = true;
+        audioSource.volume = 1;
+
+        audioSource2.clip = inAir;
+        audioSource2.loop = true;
+        audioSource2.playOnAwake = true;
+
+        audioSource2.volume = 0;
     }
 
     private void Update()
     {
         if (!play) return;
         
-        
-        
         if (player.OnGround ^ lastGround )
         {
-            audioSource.Stop();
-            audioSource.clip = inAir;
-            if (player.OnGround)
+            i++;
+            if (i >= bgm.Length)
             {
-                i++;
-                if (i>=bgm.Length)
-                {
-                    i = 0;
-                }
-                audioSource.clip = bgm[i];
+                i = 0;
             }
-            audioSource.PlayDelayed(0.1f);
+            
+            
+        }
+        if (player.OnGround)
+        {
+
+            audioSource.clip = bgm[i];
+            audioSource.volume += blend;
+            audioSource2.volume -= blend;
+
+        }
+        else
+        {
+            audioSource2.volume += blend;
+            audioSource.volume -= blend;
         }
 
-        if (!audioSource.isPlaying)
+
+        if (!audioSource.isPlaying || !audioSource2.isPlaying)
         {
             audioSource.PlayDelayed(1.0f);
+            audioSource2.PlayDelayed(1.0f);
         }
         
 
