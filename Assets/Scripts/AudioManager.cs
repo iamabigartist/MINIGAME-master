@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.SocialPlatforms;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
@@ -11,7 +6,7 @@ public class AudioManager : MonoBehaviour
     public float blend = 0.01f;
 
     public AudioClip[] bgm;
-    private int i=0;
+    private int i = 0;
     public AudioClip endGame;
     public AudioClip inAir;
     public AudioClip run;
@@ -27,10 +22,10 @@ public class AudioManager : MonoBehaviour
     {
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource2 = gameObject.AddComponent<AudioSource>();
-        
+
         player = GetComponentInParent<MovingSphere>();
-        play = (bgm.Length>0 && endGame && inAir);
-        
+        play = (bgm.Length > 0 && endGame && inAir);
+
         audioSource.clip = bgm[0];
         audioSource.loop = true;
         audioSource.playOnAwake = true;
@@ -46,16 +41,16 @@ public class AudioManager : MonoBehaviour
     private void Update()
     {
         if (!play) return;
-        
-        if (player.OnGround ^ lastGround )
+
+        if (player.OnGround ^ lastGround)
         {
             i++;
             if (i >= bgm.Length)
             {
                 i = 0;
             }
-            
-            
+
+
         }
         if (player.OnGround)
         {
@@ -77,16 +72,16 @@ public class AudioManager : MonoBehaviour
             audioSource.PlayDelayed(1.0f);
             audioSource2.PlayDelayed(1.0f);
         }
-        
+
 
         lastGround = player.OnGround;
     }
 
-    public void  playEndGame()
+    public void playEndGame()
     {
         audioSource.Stop();
         audioSource.clip = endGame;
         audioSource.PlayDelayed(0.2f);
     }
-    
+
 }

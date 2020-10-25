@@ -6,24 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Room.unity
-    guid: b3f4e4dd080957a4cabd3ffd0cfe90fc
+    path: Assets/Scenes/Menu/StartMenu.unity
+    guid: d91019f2328300c43ae00b321462f022
+  - enabled: 1
+    path: Assets/Scenes/Menu/InGameManger.unity
+    guid: f22ed98e156d5884990b7dc1ab118c99
   - enabled: 1
     path: Assets/Scenes/Matrix.unity
     guid: 215238622472143fbaf99c77c9ec6f91
   - enabled: 1
-    path: Assets/Scenes/Menu/StartMenu.unity
-    guid: d91019f2328300c43ae00b321462f022
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/Menu/InGameManger.unity
-    guid: f22ed98e156d5884990b7dc1ab118c99
+    path: Assets/Scenes/Room.unity
+    guid: b3f4e4dd080957a4cabd3ffd0cfe90fc
   - enabled: 1
     path: Assets/Scenes/Asteroid Belt.unity
     guid: 9306cf06297dfc9419c2053398da5512
   - enabled: 1
     path: Assets/Scenes/Hidden City.unity
     guid: 308dee2ddbdc5c941a65853bcf85464d
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

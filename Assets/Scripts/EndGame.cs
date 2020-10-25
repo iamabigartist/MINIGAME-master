@@ -27,6 +27,7 @@ public class EndGame : MonoBehaviour
 
     private void LoadnextLevel()
     {
+        Time.fixedDeltaTime = 0.02f;
         _asyncOperation.allowSceneActivation = true;
         //SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
         if (nextLevel != "StartMenu")

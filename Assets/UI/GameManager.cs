@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,7 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseMenuCanvas;
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -30,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     public void ToStartMenu()
     {
-        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02f;
+        Time.timeScale = 1.0f;
         SceneManager.LoadScene("StartMenu", LoadSceneMode.Single);
     }
 }
