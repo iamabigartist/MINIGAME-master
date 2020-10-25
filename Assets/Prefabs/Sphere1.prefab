@@ -171,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5957546032686323885}
   m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6315726874829106888}
@@ -203,7 +203,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f3ba9cc2f46b74147a887fc2202e7d8e, type: 2}
+  - {fileID: 2100000, guid: 3c4da40ee8b2d324d86f95b18bd4c517, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 6315726874829106890}
   - component: {fileID: 6315726874829106891}
   m_Layer: 8
-  m_Name: Sphere
+  m_Name: Sphere1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ MonoBehaviour:
   maxAirAcceleration: 0
   maxClimbAcceleration: 20
   maxSwimAcceleration: 5
-  jumpHeight: 2
+  jumpHeight: 2.4
   maxAirJumps: 0
   maxGroundAngle: 40
   maxStairsAngle: 50
@@ -415,7 +415,7 @@ MonoBehaviour:
   waterMask:
     serializedVersion: 2
     m_Bits: 16
-  normalMaterial: {fileID: 2100000, guid: f3ba9cc2f46b74147a887fc2202e7d8e, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 148cbbad10b5b4443805bfbde720ac41, type: 2}
   climbingMaterial: {fileID: 2100000, guid: 563871eb084e447869639cb8c9362551, type: 2}
   swimmingMaterial: {fileID: 2100000, guid: 1f236688f827e4ce7b5bd6cefb73810d, type: 2}
   ballRadius: 0.5

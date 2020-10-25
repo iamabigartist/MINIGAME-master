@@ -1,73 +1,80 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
-public class OrbitCamera : MonoBehaviour {
+public class OrbitCamera : MonoBehaviour
+{
 
-	[SerializeField]
-	Transform focus = default;
+    [SerializeField] Transform focus = default;
 
-	[SerializeField, Range(1f, 20f)]
-	float distance = 5f;
+    [SerializeField, Range(1f, 20f)] float distance = 5f;
 
-	[SerializeField, Min(0f)]
-	float focusRadius = 5f;
+    [SerializeField, Min(0f)] float focusRadius = 5f;
 
-	[SerializeField, Range(0f, 1f)]
-	float focusCentering = 0.5f;
+    [SerializeField, Range(0f, 1f)] float focusCentering = 0.5f;
 
-	[SerializeField, Range(1f, 360f)]
-	float rotationSpeed = 90f;
+    [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
 
-	[SerializeField, Range(-89f, 89f)]
-	float minVerticalAngle = -45f, maxVerticalAngle = 45f;
+    [SerializeField, Range(-89f, 89f)] float minVerticalAngle = -45f, maxVerticalAngle = 45f;
 
-	[SerializeField, Min(0f)]
-	float alignDelay = 5f;
+    [SerializeField, Min(0f)] float alignDelay = 5f;
 
-	[SerializeField, Range(0f, 90f)]
-	float alignSmoothRange = 45f;
+    [SerializeField, Range(0f, 90f)] float alignSmoothRange = 45f;
 
-	[SerializeField, Min(0f)]
-	float upAlignmentSpeed = 360f;
+    [SerializeField, Min(0f)] float upAlignmentSpeed = 360f;
 
-	[SerializeField]
-	LayerMask obstructionMask = -1;
+    [SerializeField] LayerMask obstructionMask = -1;
 
-	Camera regularCamera;
+    Camera regularCamera;
 
-	Vector3 focusPoint, previousFocusPoint;
+    Vector3 focusPoint, previousFocusPoint;
 
-	Vector2 orbitAngles = new Vector2(45f, 0f);
+    Vector2 orbitAngles = new Vector2(45f, 0f);
 
-	float lastManualRotationTime;
+    float lastManualRotationTime;
 
-	Quaternion gravityAlignment = Quaternion.identity;
+    Quaternion gravityAlignment = Quaternion.identity;
 
-	Quaternion orbitRotation;
-	public bool timeToggle = false;
-	public float targetdistance;
-	Vector3 CameraHalfExtends {
-		get {
-			Vector3 halfExtends;
-			halfExtends.y =
-				regularCamera.nearClipPlane *
-				Mathf.Tan(0.5f * Mathf.Deg2Rad * regularCamera.fieldOfView);
-			halfExtends.x = halfExtends.y * regularCamera.aspect;
-			halfExtends.z = 0f;
-			return halfExtends;
-		}
+    Quaternion orbitRotation;
+    public bool timeToggle = false;
+    public float targetdistance;
+
+    Vector3 CameraHalfExtends
+    {
+        get
+        {
+            Vector3 halfExtends;
+            halfExtends.y =
+                regularCamera.nearClipPlane *
+                Mathf.Tan(0.5f * Mathf.Deg2Rad * regularCamera.fieldOfView);
+            halfExtends.x = halfExtends.y * regularCamera.aspect;
+            halfExtends.z = 0f;
+            return halfExtends;
+        }
+    }
+
+    void OnValidate()
+    {
+        if (maxVerticalAngle < minVerticalAngle)
+        {
+            maxVerticalAngle = minVerticalAngle;
+        }
+    }
+
+    void Start()
+    {
+        GameObject obj = GameObject.Find("Sphere");
+        playercontroller pl = obj.GetComponent<playercontroller>();
+
+		if (pl) timeToggle = pl.timeToggle;
+
+
+
 	}
 
-	void OnValidate () {
-		if (maxVerticalAngle < minVerticalAngle) {
-			maxVerticalAngle = minVerticalAngle;
-		}
-	}
-
-	private void Update()
+    private void Update()
 	{
 
-		timeToggle = GameObject.Find("Sphere").GetComponent<playercontroller>().timeToggle;
+		
 		if (timeToggle == true)
 		{
 			distance = Mathf.SmoothStep(distance, targetdistance, 0.15f);
@@ -103,6 +110,7 @@ public class OrbitCamera : MonoBehaviour {
 		timeToggle = !timeToggle;
 	}
 	void Awake () {
+
 		regularCamera = GetComponent<Camera>();
 		focusPoint = focus.position;
 		transform.localRotation = orbitRotation = Quaternion.Euler(orbitAngles);

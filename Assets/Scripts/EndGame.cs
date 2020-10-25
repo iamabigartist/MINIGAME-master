@@ -7,11 +7,17 @@ public class EndGame : MonoBehaviour
 {
     public Animation blendPostEffect;
     public AudioManager am;
+
+    public string nextLevel;
     private void OnTriggerEnter(Collider other)
     {
-        blendPostEffect.Play();
-        am.playEndGame();
+        if(blendPostEffect) blendPostEffect.Play();
+        if(am)am.playEndGame();
     }
-    
+
+    private void nextLaevel()
+    {
+
+    }
     
 }
