@@ -82,6 +82,8 @@ public class AudioManager : MonoBehaviour
         audioSource.Stop();
         audioSource.clip = endGame;
         audioSource.PlayDelayed(0.2f);
+        audioSource.volume = 1;
+        audioSource2.volume = 0;
     }
 
 }
