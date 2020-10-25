@@ -14,10 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu/StartMenu.unity
     guid: d91019f2328300c43ae00b321462f022
-  - enabled: 1
-    path: Assets/Scenes/Menu/LV3.unity
-    guid: fcbc0c76504df4e49adb42dc6d08dda8
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menu/InGameManger.unity
     guid: f22ed98e156d5884990b7dc1ab118c99
+  - enabled: 1
+    path: Assets/Scenes/Asteroid Belt.unity
+    guid: 9306cf06297dfc9419c2053398da5512
+  - enabled: 1
+    path: Assets/Scenes/Hidden City.unity
+    guid: 308dee2ddbdc5c941a65853bcf85464d
   m_configObjects: {}

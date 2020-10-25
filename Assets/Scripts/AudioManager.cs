@@ -6,7 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
-    public AudioClip bgm;
+    public AudioClip[] bgm;
+    private int i=0;
     public AudioClip endGame;
     public AudioClip inAir;
     public AudioClip run;
@@ -21,9 +22,9 @@ public class AudioManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         player = GetComponentInParent<MovingSphere>();
-        play = (bgm && endGame && inAir);
+        play = (bgm.Length>0 && endGame && inAir);
         
-        audioSource.clip = bgm;
+        audioSource.clip = bgm[0];
         audioSource.loop = true;
         audioSource.playOnAwake = true;
     }
@@ -38,7 +39,15 @@ public class AudioManager : MonoBehaviour
         {
             audioSource.Stop();
             audioSource.clip = inAir;
-            if (player.OnGround) audioSource.clip = bgm;
+            if (player.OnGround)
+            {
+                i++;
+                if (i>=bgm.Length)
+                {
+                    i = 0;
+                }
+                audioSource.clip = bgm[i];
+            }
             audioSource.PlayDelayed(0.1f);
         }
 

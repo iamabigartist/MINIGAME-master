@@ -1,23 +1,39 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
     public Animation blendPostEffect;
     public AudioManager am;
-
+    public float exit_time;
     public string nextLevel;
+    private AsyncOperation _asyncOperation;
+    private bool isTriggered;
+    private void Start()
+    {
+        _asyncOperation = SceneManager.LoadSceneAsync(nextLevel, LoadSceneMode.Single);
+        _asyncOperation.allowSceneActivation = false;
+        isTriggered = false;
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(blendPostEffect) blendPostEffect.Play();
-        if(am)am.playEndGame();
+        if (isTriggered)return;
+        
+        if (blendPostEffect) blendPostEffect.Play();
+        if (am) am.playEndGame();
+        Invoke("LoadnextLevel", exit_time);
+        isTriggered = true;
     }
 
-    private void nextLaevel()
+    private void LoadnextLevel()
     {
-
+        _asyncOperation.allowSceneActivation = true;
+        //SceneManager.LoadScene(nextLevel, LoadSceneMode.Single);
+        if (nextLevel != "StartMenu")
+        {
+            SceneManager.LoadScene("InGameManger", LoadSceneMode.Additive);
+        }
+        
     }
-    
+
 }

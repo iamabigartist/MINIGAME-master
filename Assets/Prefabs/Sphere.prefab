@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ab6a22771b646c49543b6456620d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgm: {fileID: 8300000, guid: 44083a35fd99846fab814ab473390b82, type: 3}
-  endGame: {fileID: 8300000, guid: bdc908bef67a0485491068865c09c83f, type: 3}
-  inAir: {fileID: 8300000, guid: 5c0ecb55caacd42e99f581cde4f96ae7, type: 3}
+  bgm:
+  - {fileID: 8300000, guid: 073190d174c1ca8458b84b62e7f88dfc, type: 3}
+  endGame: {fileID: 8300000, guid: 2952c8cf510210246872ae0d71ba1ccb, type: 3}
+  inAir: {fileID: 8300000, guid: a9ffb0d91b46b5e43b605fcd03bd5966, type: 3}
   run: {fileID: 0}
-  player: {fileID: 0}
+  player: {fileID: 6315726874829106890}
 --- !u!82 &5856713846272366052
 AudioSource:
   m_ObjectHideFlags: 0
@@ -451,9 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c470579116de36e43af2ff3b1928b345, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeScale: 0
+  TimeScale: 0.01
   timeToggle: 0
   TargetPosition: {x: 0, y: 0, z: 0}
   skill: 1
-  SkillCooldown: 0
-  time: 0
+  SkillCooldown: 3
+  time: 0.1
